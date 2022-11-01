@@ -1,5 +1,4 @@
 FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
 
 VOLUME /tmp
 ADD /build/libs/devops.jar app.jar
