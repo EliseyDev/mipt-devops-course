@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    #    - name: install docker
+    #      apt-get: name=docker
+    #    - name: restart
+    #      command: service docker restart
+    - name: copy Dockerfile
+      copy: src=project/Dockerfile dest=/tmp/path/
+    - name: Build image
+      docker_image:
+        path: /tmp/path/
+        name: devops
+        state: present
+        source: build
+    - name: deploy nginx docker container
+      docker_container:
+        image: devops
+        name: devops
+        state: started
+        #        auto_remove: true
+        ports:
+          - "8080:80"
