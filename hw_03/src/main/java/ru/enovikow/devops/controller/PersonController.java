@@ -5,17 +5,23 @@ import org.springframework.web.bind.annotation.*;
 import ru.enovikow.devops.dto.PersonDto;
 import ru.enovikow.devops.service.PersonService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/person")
+@RequestMapping(value = "/persons")
 public class PersonController {
 
     private final PersonService personService;
 
     @GetMapping(value = "/with-id")
     public PersonDto getPersonById(@RequestParam long id) {
-        PersonDto personById = personService.getPersonById(id);
         return personService.getPersonById(id);
+    }
+
+    @GetMapping(value = "/all")
+    public List<PersonDto> getAllPersons() {
+        return personService.getAllPersons();
     }
 
     @GetMapping

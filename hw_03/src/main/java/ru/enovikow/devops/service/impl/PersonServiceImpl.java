@@ -3,11 +3,12 @@ package ru.enovikow.devops.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.enovikow.devops.dto.PersonDto;
-import ru.enovikow.devops.mapper.Mapper;
+import ru.enovikow.devops.mapper.ModelMapper;
 import ru.enovikow.devops.model.Person;
 import ru.enovikow.devops.repository.PersonRepository;
 import ru.enovikow.devops.service.PersonService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,11 +16,16 @@ import java.util.Optional;
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
-    private final Mapper<PersonDto, Person> mapper;
+    private final ModelMapper<PersonDto, Person> modelMapper;
 
     @Override
     public PersonDto getPersonById(long id) {
-        return Optional.ofNullable(personRepository.findPersonById(id)).map(mapper::toDto).orElse(null);
+        return Optional.ofNullable(personRepository.findPersonById(id)).map(modelMapper::toDto).orElse(null);
+    }
+
+    @Override
+    public List<PersonDto> getAllPersons() {
+        return personRepository.findAllPersons().stream().map(modelMapper::toDto).toList();
     }
 
 

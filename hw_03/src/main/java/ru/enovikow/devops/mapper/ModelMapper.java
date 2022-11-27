@@ -1,5 +1,5 @@
 package ru.enovikow.devops.mapper;
 
-public interface Mapper<D, M> {
+public interface ModelMapper<D, M> {
     D toDto(M model);
 }

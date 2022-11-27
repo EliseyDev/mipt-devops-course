@@ -5,7 +5,7 @@ import ru.enovikow.devops.dto.PersonDto;
 import ru.enovikow.devops.model.Person;
 
 @Component
-public class PersonMapper implements Mapper<PersonDto, Person> {
+public class PersonModelMapper implements ModelMapper<PersonDto, Person> {
     @Override
     public PersonDto toDto(Person model) {
         return PersonDto.builder()
