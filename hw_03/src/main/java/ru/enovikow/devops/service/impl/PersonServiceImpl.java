@@ -10,6 +10,7 @@ import ru.enovikow.devops.service.PersonService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +26,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<PersonDto> getAllPersons() {
-        return personRepository.findAllPersons().stream().map(modelMapper::toDto).toList();
+        return personRepository.findAllPersons().stream().map(modelMapper::toDto).collect(Collectors.toList());
     }
 
 
