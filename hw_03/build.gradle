@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version '2.7.5'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'java'
-//    id 'org.sonarqube'
     id "org.sonarqube" version "3.4.0.2513"
 }
 
@@ -40,8 +39,6 @@ sonarqube {
         property 'sonar.host.url', 'http://localhost:9000'
         property "sonar.login", "admin"
         property "sonar.password", "Dctjnkbxyj626"
-//        property "sonar.projectKey", "project:service"
-//        property 'sonar.projectName', 'NameOf Service'
         property 'sonar.java.source', 18
         property 'sonar.junit.reportPaths', 'build/results'
         property 'encoding', 'UTF-8'
