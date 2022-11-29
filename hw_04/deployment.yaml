@@ -16,5 +16,5 @@ spec:
     spec:
       containers:
         - name: kube-spring-boot
-          image: hw_01-spring-boot
+          image: hw_04
           imagePullPolicy: Never
