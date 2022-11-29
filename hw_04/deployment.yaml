@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-spring-boot
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kube-spring-boot
+  template:
+    metadata:
+      name: kube-spring-boot
+      labels:
+        app: kube-spring-boot
+    spec:
+      containers:
+        - name: kube-spring-boot
+          image: hw_01-spring-boot
+          imagePullPolicy: Never
