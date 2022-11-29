@@ -4,16 +4,14 @@
 
 Сервис написан на Spring Boot с использованием Gradle:
 
-1) Собрать исполняемый jar командой:
 
-> ./gradlew bootJar
-
-### Docker
+### Jenkins pipeline
 
     pipeline {
         agent any
         tools {
             gradle '7.6'
+            dockerTool 'docker'
     }
 
     stages {
@@ -50,15 +48,22 @@
         
         stage('Gradle Build') {
             steps {
+                
                  dir('hw_03') {
+                  sh 'ls -a'
                   sh 'gradle build'
                 }
             }
         }
         
-        stage('Deploy') {
+        stage('Docker Build') {
             steps {
-              sh 'docker compose up -d'
+                  dir('hw_03') {
+                    /* sh 'docker build -t hw_03 .' */
+                    script{
+                    docker.build("hw-01-spring-boot")
+                  }
+                }
             }
         }
         
@@ -71,3 +76,4 @@
     }
 
     }
+
